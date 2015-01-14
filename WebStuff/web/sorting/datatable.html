@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+
+  </head>
+  <body>
+    <div>Data table</div>
+    <table id="table_id" class="display">
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1 Data 1</td>
+          <td>Row 1 Data 2</td>
+        </tr>
+        <tr>
+          <td>Row 2 Data 1</td>
+          <td>Row 2 Data 2</td>
+        </tr>
+        <tr>
+          <td>AAA</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>AAA</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>BBB</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="#" onclick="printDataTableSorting()">printSorting</a>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#table_id').DataTable();
+      });
+
+      function printDataTableSorting() {
+          var sorts = $("#table_id.dataTable").DataTable().order();
+          var numSorts = sorts.length;
+          console.log('aantal sorts=' + numSorts);
+          for (var i = 0; i < numSorts; i++) {
+              console.log("sort item: " + sorts[i]);
+          }
+
+          var tableSorterFormat = convertDataTableToTableSorter(sorts);
+
+
+          printTableSorterSorting(tableSorterFormat);
+      }
+
+      function printTableSorterSorting(tableSorterObject) {
+          var len = tableSorterObject.length;
+          for (var i = 0; i < len; i++) {
+              var item = tableSorterObject[i];
+              console.log("column:" + item[0] + ", ascDesc:" + item[1]);
+          }
+      }
+
+
+// tableSorter [ [0,0], [1,0] ]
+      function convertDataTableToTableSorter(dataTableObject) {
+
+          var tableSorter = [];
+
+          var len = dataTableObject.length;
+          for (var i = 0; i < len; i++) {
+              tableSorter[i] = [dataTableObject[i][0], dataTableObject[i][1] === "asc" ? 0 : 1];
+          }
+
+          return tableSorter;
+      }
+    </script>
+  </body>
+  <!--
+  $("#table_id.dataTable").DataTable().order()
+  -->
+</html>
