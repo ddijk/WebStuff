@@ -51,12 +51,47 @@ and open the template in the editor.
           <td>BBB</td>
           <td>10</td>
         </tr>
+        <tr>
+          <td>Aap</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Noot</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>Mies</td>
+          <td>10</td>
+        </tr>
       </tbody>
     </table>
     <a href="#" onclick="printDataTableSorting()">printSorting</a>
     <script type="text/javascript">
       $(document).ready(function () {
-          $('#table_id').DataTable();
+          $('#table_id').DataTable({
+              "paging": true,
+              "pageLength": 3,
+              "infoCallback": function (settings, start, end, max, total, pre) {
+                  console.log("settings", settings._iDisplayLength);
+                  var pageLength = settings._iDisplayLength;
+                  if (total !== max) {
+                      // filtering
+                      if (total <= pageLength) {
+                          return "Showing " + total + " entries (filtered from a total of " + max + " entries)";
+                      } else {
+                          return "Showing " + start + " to " + end + " entries (filtered from a total of " + total + " entries)";
+                      }
+                  } else {
+                      // no filtering
+                      if (max <= pageLength) {
+                          return "Showing " + max + " entries";
+                      } else {
+                          return "Showing " + start + " to " + end + " of " + max + " entries";
+                      }
+                  }
+
+              }
+          });
       });
 
       function printDataTableSorting() {
