@@ -5,17 +5,17 @@
 <title>JS Bin</title>
 <script type="text/javascript" src="http://sukima.github.com/jasmine-all/jasmine-all-min.js"></script>
 <script type="text/javascript" src="../src/calculator.js"></script>
+<script type="text/javascript" src="http://requirejs.org/docs/release/2.1.11/minified/require.js"></script>
 </head>
 <body>
-  <script type="text/javascript">
 
-describe("my suite", function() {
+  
+  <script type="text/javascript" src="../spec/mytest-spec.js"></script>
+  <script type="text/javascript" src="../spec-fragments/calculator-test-only.js"></script>
+
+  
 
 
-  it("2 plus 3 is 5", function() {
-    expect(add(2,3)).toBe(5);
-  });
-});
-  </script>
+
 </body>
 </html>
