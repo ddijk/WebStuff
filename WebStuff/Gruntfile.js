@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     concat: {
   options: {
     // define a string to put between each file in the concatenated output
-    separator: ';'
+    //separator: ';'
   },
   dist: {
     // the files to concatenate
@@ -27,6 +27,10 @@ module.exports = function(grunt) {
   calc: {
       src: ['spec-fragments/require-calculator.js', 'spec-fragments/calculator-test-only.js'],
       dest: 'spec/calculator-spec.js',
+    },
+    math: {
+      src: ['spec-fragments/require-math.js', 'spec-fragments/math-test-only.js'],
+      dest: 'spec/math-spec.js',
     },
    dist: {
       src: ['spec-fragments/**/*.js'],

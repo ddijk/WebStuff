@@ -13,4 +13,9 @@ describe("my suite", function() {
     expect(subtract(5,3)).toBe(2);
   });
 
+   it("5 min 3 is 2", function() {
+    var a = new add();
+    expect(a.constructor).toBe(add);
+  });
+
 });
