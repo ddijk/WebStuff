@@ -1,0 +1,8 @@
+# genereer file in spec dir
+grunt concat:calc
+
+# run headless test
+jasmine-node spec
+
+# open html file, in-browser test
+test.html	
